@@ -15,8 +15,10 @@ int main() {
     Leitura(pontos, maxLinhas);
     LeituraTest(testes, maxLinhasTestes);
 
-    PrintArray(pontos, maxLinhas);
-    PrintArray(testes, maxLinhasTestes);
+    // PrintArray(pontos, maxLinhas);
+    // PrintArray(testes, maxLinhasTestes);
+
+    KNN(pontos, testes, 3, maxLinhas, maxLinhasTestes);
 
     return 0;
 }

@@ -1,8 +1,10 @@
 #include "leitura.h"
+#include "utilidade.h"
 
 #ifndef KNN_H
 #define KNN_H
 
-int Distancia(Ponto ponto1, Ponto ponto2);
+DistanciaPonto Distancia(Ponto ponto1, Ponto ponto2);
+void KNN(Ponto pontos[], Ponto testes[], int k, int tamanhoPontos, int tamanhoTestes);
 
 #endif
