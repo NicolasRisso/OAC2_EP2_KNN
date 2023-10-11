@@ -2,7 +2,7 @@
 #define LEITURA_H
 
 struct Ponto {
-    float x[8];  //x, y, z, w, ...
+    float x[8];  //x, y, z, w, u, v, s, t
     float classe;
 };
 typedef struct Ponto Ponto;

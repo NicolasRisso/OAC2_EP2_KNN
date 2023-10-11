@@ -4,7 +4,7 @@ SEM MAKEFILE:
 cd .\KNN_C\
 
 2. Compile com o GCC:
-gcc -o ../compiles/main main.c leitura.c utilidade.c
+gcc -o ../compiles/main main.c leitura.c utilidade.c knn.c
 ../compiles/main
 
 

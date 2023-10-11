@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "utilidade.h"
-#include "leitura.h"
 
 void PrintArray(Ponto lista[], int max){
     for (int i = 0; i < max; i++) {
@@ -16,4 +15,22 @@ void PrintArray(Ponto lista[], int max){
         printf("], ");
         printf("Classe: %.0f\n", lista[i].classe);
     }
+}
+
+int CountFileLines(char filePath[]){
+
+    FILE *arquivo;
+    arquivo = fopen(filePath, "r");
+    if (arquivo == NULL) { perror("Erro ao abrir o arquivo"); return -1; }
+
+    int contadorLinhas = 0;
+    char linha[60]; //Qualquer arquivo que tenha uma linha com mais char do que esse array suporta resultará em problemas para a contagem.
+
+    while (fgets(linha, sizeof(linha), arquivo) != NULL) {
+        contadorLinhas++;
+    }
+
+    fclose(arquivo);
+
+    return contadorLinhas;
 }
