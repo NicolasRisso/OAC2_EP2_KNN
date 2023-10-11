@@ -35,6 +35,6 @@ void KNN(Ponto pontos[], Ponto testes[], int k, int tamanhoPontos, int tamanhoTe
         if (distanciasPontos[i].distancia == -1) break;
         printf("Distancia(%d): ", i + 1);
         printf("%.4f, ", distanciasPontos[i].distancia);
-        printf("%f\n", distanciasPontos[i].classe);
+        printf("%.0f\n", distanciasPontos[i].classe);
     }
 }
