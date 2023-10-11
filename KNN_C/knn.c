@@ -1,14 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-// Estrutura para representar os pontos com x, y e classe
 struct Ponto {
-    float x;
-    float y;
+    float x[8];  //x, y, z, w, ...
     float classe;
 };
+typedef struct Ponto Ponto;
 
-int main() {
+void Leitura(Ponto matrizPonto[], int maxLinhas){
+
     FILE *xtrainFile, *ytrainFile;
     char xtrainFileName[] = "xtrain.txt";
     char ytrainFileName[] = "ytrain.txt";
@@ -19,46 +20,51 @@ int main() {
 
     if (xtrainFile == NULL || ytrainFile == NULL) {
         perror("Erro ao abrir um dos arquivos");
-        return 1;
     }
 
-    int maxLinhas = 576; // Defina o tamanho máximo da matriz
-    struct Ponto matrizPonto[maxLinhas * 4]; // Cada linha representa 4 pontos
-    int numLinhas = 0;
-
-    char classe[4];
-
-    // Leia os dados dos arquivos e armazene na matriz de estruturas
-    while (numLinhas < maxLinhas &&
+    //Leitura do xtrain
+    for (int numLinhas = 0; numLinhas < maxLinhas; numLinhas++){
         fscanf(xtrainFile, "%f,%f,%f,%f,%f,%f,%f,%f",
-            &matrizPonto[numLinhas * 4].x, &matrizPonto[numLinhas * 4].y,
-            &matrizPonto[numLinhas * 4 + 1].x, &matrizPonto[numLinhas * 4 + 1].y,
-            &matrizPonto[numLinhas * 4 + 2].x, &matrizPonto[numLinhas * 4 + 2].y,
-            &matrizPonto[numLinhas * 4 + 3].x, &matrizPonto[numLinhas * 4 + 3].y) != EOF &&
-        fgets(classe, sizeof(classe), ytrainFile) != NULL) {
-        printf("%d ", classe == "1.0\0");
+        &matrizPonto[numLinhas].x[0], &matrizPonto[numLinhas].x[1],
+        &matrizPonto[numLinhas].x[2], &matrizPonto[numLinhas].x[3],
+        &matrizPonto[numLinhas].x[4], &matrizPonto[numLinhas].x[5],
+        &matrizPonto[numLinhas].x[6], &matrizPonto[numLinhas].x[7]);//Verifica se o arquivo 'xtrain.txt' ainda tem linhas e salva os floats.
+    }
 
-
-        // Defina a classe para os quatro pontos na mesma linha
-        // if (classe != 0){
-        //     for (int i = 0; i < 4; i++){
-        //         matrizPonto[numLinhas * 4 + i ].classe = 1;
-        //     }
-        // }else{
-        //     for (int i = 0; i < 4; i++){
-        //         matrizPonto[numLinhas * 4 + i ].classe = 0;
-        //     }
-        // }
-        numLinhas++;
+    //Leitura do ytrain
+    char tmp[4];
+    for (int i = 0; i < maxLinhas; i++){
+        if (fgets(tmp, sizeof(tmp), ytrainFile) == NULL) break; //Para a leitura caso o arquivo tenha acabado.
+        if (strlen(tmp) <= 1) //Evita a leitura repetida causada pelo \0.
+            continue;
+        sscanf(tmp, "%f", &matrizPonto[i].classe);
+        fgetc(ytrainFile); //Para a leitura atual do fgets para que ele não leia o .0 do arquivo como um outro float.
     }
 
     // Feche os arquivos após a leitura
     fclose(xtrainFile);
     fclose(ytrainFile);
 
-    // Exiba os dados lidos
-    for (int i = 0; i < numLinhas * 4; i++) {
-        //printf("Ponto %d: x = %f, y = %f, classe = %d\n", i, matrizPonto[i].x, matrizPonto[i].y, matrizPonto[i].classe);
+}
+
+int main() {
+
+    int maxLinhas = 576; // Defina o tamanho máximo da matriz
+    struct Ponto pontos[maxLinhas]; // Cada linha representa 4 pontos
+
+    Leitura(pontos, maxLinhas);
+
+    for (int i = 0; i < 576; i++) {
+        printf("Ponto %d: ", i);
+        printf("x: [");
+        for (int j = 0; j < 8; j++) {
+            printf("%.2f", pontos[i].x[j]);
+            if (j < 7) {
+                printf(", ");
+            }
+        }
+        printf("] ");
+        printf("%d: %.2f\n",i , pontos[i].classe);
     }
 
     return 0;

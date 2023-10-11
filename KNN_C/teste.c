@@ -10,10 +10,12 @@ int main() {
     }
 
     char linha[1024]; // Suponha um tamanho máximo para a linha
+    float valor = -1;
 
     // Ler cada linha do arquivo e imprimir o conteúdo
     while (fgets(linha, sizeof(linha), file_ytrain) != NULL) {
-        printf("Conteúdo da linha: %s", linha);
+        sscanf(linha, "%f", &valor);
+        printf("%d ", (int)valor);
     }
 
     fclose(file_ytrain);
