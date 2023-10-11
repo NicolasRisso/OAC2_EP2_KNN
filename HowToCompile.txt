@@ -1,0 +1,6 @@
+1. Vá para a pasta KNN_C:
+cd .\KNN_C\
+
+2. Compile com o GCC:
+gcc -o ../compiles/main main.c leitura.c
+../compiles/main

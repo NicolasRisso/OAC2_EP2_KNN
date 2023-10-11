@@ -1,18 +1,12 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
-
-struct Ponto {
-    float x[8];  //x, y, z, w, ...
-    float classe;
-};
-typedef struct Ponto Ponto;
+#include "leitura.h"
 
 void Leitura(Ponto matrizPonto[], int maxLinhas){
 
     FILE *xtrainFile, *ytrainFile;
-    char xtrainFileName[] = "xtrain.txt";
-    char ytrainFileName[] = "ytrain.txt";
+    char xtrainFileName[] = "../data/xtrain.txt";
+    char ytrainFileName[] = "../data/ytrain.txt";
 
     // Abra os arquivos para leitura
     xtrainFile = fopen(xtrainFileName, "r");
@@ -45,27 +39,4 @@ void Leitura(Ponto matrizPonto[], int maxLinhas){
     fclose(xtrainFile);
     fclose(ytrainFile);
 
-}
-
-int main() {
-
-    int maxLinhas = 576; // Defina o tamanho máximo da matriz
-    struct Ponto pontos[maxLinhas]; // Cada linha representa 4 pontos
-
-    Leitura(pontos, maxLinhas);
-
-    for (int i = 0; i < 576; i++) {
-        printf("Ponto %d: ", i);
-        printf("x: [");
-        for (int j = 0; j < 8; j++) {
-            printf("%.2f", pontos[i].x[j]);
-            if (j < 7) {
-                printf(", ");
-            }
-        }
-        printf("] ");
-        printf("%d: %.2f\n",i , pontos[i].classe);
-    }
-
-    return 0;
 }
