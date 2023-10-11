@@ -1,10 +1,10 @@
 all: compile run
 
 compile:
-    gcc -o ../compiles/main main.c leitura.c
+	gcc -o ../compiles/main main.c leitura.c
 
 run:
-    ../compiles/main
+	../compiles/main
 
 clean:
-    rm -f ../compiles/main
+	rm -f ../compiles/main

@@ -38,5 +38,4 @@ void Leitura(Ponto matrizPonto[], int maxLinhas){
     // Feche os arquivos após a leitura
     fclose(xtrainFile);
     fclose(ytrainFile);
-
 }
