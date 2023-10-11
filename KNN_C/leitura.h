@@ -8,5 +8,6 @@ struct Ponto {
 typedef struct Ponto Ponto;
 
 void Leitura(struct Ponto matrizPonto[], int numElementos);
+void LeituraTest(Ponto matrizPonto[], int maxLinhas);
 
 #endif

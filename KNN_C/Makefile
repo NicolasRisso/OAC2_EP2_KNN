@@ -1,7 +1,7 @@
 all: compile run
 
 compile:
-	gcc -o ../compiles/main main.c leitura.c
+	gcc -o ../compiles/main main.c leitura.c utilidade.c
 
 run:
 	../compiles/main

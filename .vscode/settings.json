@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "leitura.h": "c",
+        "stdlib.h": "c"
+    }
+}
