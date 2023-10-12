@@ -18,7 +18,7 @@ DistanciaPonto Distancia(Ponto ponto1, Ponto ponto2){
 
 void KNN(Ponto pontos[], Ponto testes[], int k, int tamanhoPontos, int tamanhoTestes){
     DistanciaPonto distanciasPontos[tamanhoPontos];
-    for (int i = 0; i < tamanhoPontos; i++) distanciasPontos[i].distancia = -1; //Definindo o array de distancias.
+    for (int i = 0; i < tamanhoPontos; i++) distanciasPontos[i].distancia = distanciasPontos[i].classe = -1;//Definindo o array de distancias.
 
     //Calculando todas as distâncias com relação à um ponto de teste.
     for (int i = 0; i < tamanhoPontos; i++){
