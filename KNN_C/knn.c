@@ -17,24 +17,62 @@ DistanciaPonto Distancia(Ponto ponto1, Ponto ponto2){
 }
 
 void KNN(Ponto pontos[], Ponto testes[], int k, int tamanhoPontos, int tamanhoTestes){
-    DistanciaPonto distanciasPontos[tamanhoPontos];
-    for (int i = 0; i < tamanhoPontos; i++) distanciasPontos[i].distancia = distanciasPontos[i].classe = -1;//Definindo o array de distancias.
-
-    //Calculando todas as distâncias com relação à um ponto de teste.
-    for (int i = 0; i < tamanhoPontos; i++){
-        if (&pontos[i] == NULL) break;
-        distanciasPontos[i] = Distancia(testes[0], pontos[i]);
+    DistanciaPonto distanciasPontos[tamanhoTestes][tamanhoPontos];
+    
+    for (int i = 0; i < tamanhoTestes; i++){
+        for (int j = 0; j < tamanhoPontos; j++) distanciasPontos[i][j].distancia = -1; //Definindo o array de distancias.
     }
 
-    bubbleSort(distanciasPontos, tamanhoPontos);
+    //Calculando todas as distâncias com relação à um ponto de teste.
+    for (int i = 0; i < tamanhoTestes; i++){
+        for (int j = 0; j < tamanhoPontos; j++){
+            if (&pontos[j] == NULL) break;
+            distanciasPontos[i][j] = Distancia(testes[i], pontos[j]);
+    }
+        bubbleSort(distanciasPontos[i], tamanhoPontos);
+         //Implementar a observacao dos k pontos mais proximos
+        testes[i].classe = verificaClasse(distanciasPontos[i],k);
+    }
 
-    //Implementar a observacao dos k pontos mais proximos
+    for (int i = 0; i < tamanhoTestes; i++){
+        printf("teste:%d classe: %.1f\n", i+1, testes[i].classe);
+    }
 
     //Imprimindo
     for (int i = 0; i < tamanhoPontos; i++) {
-        if (distanciasPontos[i].distancia == -1) break;
+        if (distanciasPontos[69][i].distancia == -1) break;
         printf("Distancia(%d): ", i + 1);
-        printf("%.4f, ", distanciasPontos[i].distancia);
-        printf("%.0f\n", distanciasPontos[i].classe);
+        printf("%.4f, ", distanciasPontos[69][i].distancia);
+        printf("%.0f\n", distanciasPontos[69][i].classe);
+    }
+}
+
+float verificaClasse(DistanciaPonto distanciasPontos[],int k){
+    int classeZero = 0;
+    int classeUm = 0;
+    int distClasseZero = 0;
+    int distClasseUm = 0;
+    for( int i = 0; i<k;i++){
+        if(distanciasPontos[i].classe == 1){
+            classeUm++;
+            distClasseUm += distanciasPontos[i].distancia;
+        }else{
+            classeZero++;
+            distClasseZero += distanciasPontos[i].distancia;
+        }
+    }
+    if(k%2 != 0 ){
+        if( classeUm > classeZero){
+            return 1.0;
+        }else{
+            return 0.0;
+        }
+    }else{
+        if(distClasseZero > distClasseUm ){
+            return 1;
+        }
+        else{
+            return 0;
+        }
     }
 }
