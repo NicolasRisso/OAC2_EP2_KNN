@@ -40,10 +40,10 @@ void KNN(Ponto pontos[], Ponto testes[], int k, int tamanhoPontos, int tamanhoTe
 
     //Imprimindo
     for (int i = 0; i < tamanhoPontos; i++) {
-        if (distanciasPontos[3][i].distancia == -1) break;
+        if (distanciasPontos[69][i].distancia == -1) break;
         printf("Distancia(%d): ", i + 1);
-        printf("%.4f, ", distanciasPontos[3][i].distancia);
-        printf("%.0f\n", distanciasPontos[3][i].classe);
+        printf("%.4f, ", distanciasPontos[69][i].distancia);
+        printf("%.0f\n", distanciasPontos[69][i].classe);
     }
 }
 
