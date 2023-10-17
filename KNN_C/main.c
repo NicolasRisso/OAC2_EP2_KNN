@@ -18,7 +18,7 @@ int main() {
     // PrintArray(pontos, maxLinhas);
     // PrintArray(testes, maxLinhasTestes);
 
-    KNN(pontos, testes, 3, maxLinhas, maxLinhasTestes);
+    KNN(pontos, testes, 2, maxLinhas, maxLinhasTestes);
 
     return 0;
 }
