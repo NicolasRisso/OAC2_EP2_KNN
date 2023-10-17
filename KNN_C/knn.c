@@ -16,11 +16,26 @@ DistanciaPonto Distancia(Ponto ponto1, Ponto ponto2){
     return tmp;
 }
 
+float verificaClasse(DistanciaPonto distanciasPontos[],int k){
+    int classeZero = 0, classeUm = 0, distClasseZero = 0, distClasseUm = 0;
+    for( int i = 0; i<k;i++){
+        if(distanciasPontos[i].classe == 1){
+            classeUm++;
+            distClasseUm += distanciasPontos[i].distancia;
+        }else{
+            classeZero++;
+            distClasseZero += distanciasPontos[i].distancia;
+        }
+    }
+    if(k%2 != 0 ) return classeUm > classeZero ? 1 : 0;
+    else return distClasseZero > distClasseUm ? 1 : 0;
+}
+
 void KNN(Ponto pontos[], Ponto testes[], int k, int tamanhoPontos, int tamanhoTestes){
     DistanciaPonto distanciasPontos[tamanhoTestes][tamanhoPontos];
     
     for (int i = 0; i < tamanhoTestes; i++){
-        for (int j = 0; j < tamanhoPontos; j++) distanciasPontos[i][j].distancia = -1; //Definindo o array de distancias.
+        for (int j = 0; j < tamanhoPontos; j++) distanciasPontos[i][j].distancia = distanciasPontos[i][j].classe = -1; //Definindo o array de distancias.
     }
 
     //Calculando todas as distâncias com relação à um ponto de teste.
@@ -28,7 +43,7 @@ void KNN(Ponto pontos[], Ponto testes[], int k, int tamanhoPontos, int tamanhoTe
         for (int j = 0; j < tamanhoPontos; j++){
             if (&pontos[j] == NULL) break;
             distanciasPontos[i][j] = Distancia(testes[i], pontos[j]);
-    }
+        }
         bubbleSort(distanciasPontos[i], tamanhoPontos);
          //Implementar a observacao dos k pontos mais proximos
         testes[i].classe = verificaClasse(distanciasPontos[i],k);
@@ -47,32 +62,23 @@ void KNN(Ponto pontos[], Ponto testes[], int k, int tamanhoPontos, int tamanhoTe
     }
 }
 
-float verificaClasse(DistanciaPonto distanciasPontos[],int k){
-    int classeZero = 0;
-    int classeUm = 0;
-    int distClasseZero = 0;
-    int distClasseUm = 0;
-    for( int i = 0; i<k;i++){
-        if(distanciasPontos[i].classe == 1){
-            classeUm++;
-            distClasseUm += distanciasPontos[i].distancia;
-        }else{
-            classeZero++;
-            distClasseZero += distanciasPontos[i].distancia;
+int ordena(int k, float *xtrain, float *ytrain, float *xtest){
+    int tamanho = 0;
+    while (ytrain[tamanho]){
+        tamanho++;
+    }
+    
+    Ponto pontos[tamanho];
+    Ponto teste;
+
+    for (int i = 0; i < tamanho; i++){
+        pontos[i].classe = ytrain[i];
+        for (int j = 0; j < 8; j++){
+            pontos[i].x[j] = xtrain[i * 8 + j];
         }
     }
-    if(k%2 != 0 ){
-        if( classeUm > classeZero){
-            return 1.0;
-        }else{
-            return 0.0;
-        }
-    }else{
-        if(distClasseZero > distClasseUm ){
-            return 1;
-        }
-        else{
-            return 0;
-        }
+    for (int i = 0; i < 8; i++){
+        teste.x[i] = xtest[i];
     }
+    return -1;
 }

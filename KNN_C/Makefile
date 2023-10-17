@@ -5,6 +5,3 @@ compile:
 
 run:
 	../compiles/main
-
-clean:
-	rm -f ../compiles/main

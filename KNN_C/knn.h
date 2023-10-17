@@ -5,6 +5,7 @@
 #define KNN_H
 
 DistanciaPonto Distancia(Ponto ponto1, Ponto ponto2);
-void KNN(Ponto pontos[], Ponto testes[], int k, int tamanhoPontos, int tamanhoTestes);
 float verificaClasse(DistanciaPonto distanciasPontos[],int k);
+void KNN(Ponto pontos[], Ponto testes[], int k, int tamanhoPontos, int tamanhoTestes);
+int ordena(int k, float *xtrain, float *ytrain, float *xtest);
 #endif

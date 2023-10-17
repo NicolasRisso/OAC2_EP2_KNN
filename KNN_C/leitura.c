@@ -9,7 +9,6 @@ void EscreverX(Ponto matrizPonto[], FILE *file, int maxLinhas){
         &matrizPonto[numLinhas].x[2], &matrizPonto[numLinhas].x[3],
         &matrizPonto[numLinhas].x[4], &matrizPonto[numLinhas].x[5],
         &matrizPonto[numLinhas].x[6], &matrizPonto[numLinhas].x[7]);//Verifica se o arquivo 'xtrain.txt' ainda tem linhas e salva os floats.
-        matrizPonto[numLinhas].id = numLinhas;
     }
 }
 
