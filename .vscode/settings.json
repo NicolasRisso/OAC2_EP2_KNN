@@ -3,6 +3,7 @@
         "leitura.h": "c",
         "stdlib.h": "c",
         "stdio.h": "c",
-        "cmath": "c"
+        "cmath": "c",
+        "string.h": "c"
     }
 }

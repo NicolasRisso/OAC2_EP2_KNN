@@ -1,4 +1,3 @@
-#include "leitura.h"
 #include "utilidade.h"
 
 #ifndef KNN_H

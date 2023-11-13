@@ -1,24 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "leitura.h"
-#include "utilidade.h"
 #include "knn.h"
 
 int main() {
 
-    int maxLinhas = CountFileLines("../data/xtrain.txt");
+    char xtrainFileName[] = "../data/xtrain.txt";
+    char ytrainFileName[] = "../data/ytrain.txt";
+
+    int maxLinhas = CountFileLines(xtrainFileName);
     struct Ponto pontos[maxLinhas];
 
     int maxLinhasTestes = CountFileLines("../data/xtest.txt");
     struct Ponto testes[maxLinhasTestes];
 
-    Leitura(pontos, maxLinhas);
+    LeituraTrain(pontos, xtrainFileName, ytrainFileName);
     LeituraTest(testes, maxLinhasTestes);
 
     // PrintArray(pontos, maxLinhas);
     // PrintArray(testes, maxLinhasTestes);
 
-    KNN(pontos, testes, 2, maxLinhas, maxLinhasTestes);
+    //KNN(pontos, testes, 1, maxLinhas, maxLinhasTestes);
+
+    PrintArray(pontos, maxLinhas);
+    PrintArray(testes, maxLinhasTestes);
 
     float xtrain[maxLinhas * 8];
     float ytrain[maxLinhas];
@@ -36,7 +40,7 @@ int main() {
         }
     }
 
-    int tmp = ordena(3, xtrain, ytrain, xtest);
+    //int tmp = ordena(3, xtrain, ytrain, xtest);
 
     return 0;
 }

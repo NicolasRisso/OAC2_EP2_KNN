@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <math.h>
 #include "knn.h"
-#include "utilidade.h"
 
 DistanciaPonto Distancia(Ponto ponto1, Ponto ponto2){
     DistanciaPonto tmp;
@@ -55,10 +54,10 @@ void KNN(Ponto pontos[], Ponto testes[], int k, int tamanhoPontos, int tamanhoTe
 
     //Imprimindo
     for (int i = 0; i < tamanhoPontos; i++) {
-        if (distanciasPontos[69][i].distancia == -1) break;
+        if (distanciasPontos[0][i].distancia == -1) break;
         printf("Distancia(%d): ", i + 1);
-        printf("%.4f, ", distanciasPontos[69][i].distancia);
-        printf("%.0f\n", distanciasPontos[69][i].classe);
+        printf("%.4f, ", distanciasPontos[0][i].distancia);
+        printf("%.0f\n", distanciasPontos[0][i].classe);
     }
 }
 

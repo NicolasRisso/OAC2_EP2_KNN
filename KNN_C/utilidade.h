@@ -1,5 +1,4 @@
 #include "leitura.h"
-#include "structs.h"
 
 #ifndef UTILIDADE_H
 #define UTILIDADE_H
