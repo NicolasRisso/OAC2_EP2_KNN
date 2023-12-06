@@ -19,26 +19,10 @@ int main() {
     // PrintArray(pontos, maxLinhas);
     // PrintArray(testes, maxLinhasTestes);
 
-    //KNN(pontos, testes, 1, maxLinhas, maxLinhasTestes);
+    KNN(pontos, testes, 1, maxLinhas, maxLinhasTestes);
 
-    PrintArray(pontos, maxLinhas);
-    PrintArray(testes, maxLinhasTestes);
-
-    float xtrain[maxLinhas * 8];
-    float ytrain[maxLinhas];
-    float xtest[maxLinhasTestes * 8];
-
-    for (int i = 0; i < maxLinhas; i++){
-        for (int j = 0; j < 8; j++){
-            xtrain[i * 8 + j] = pontos[i].x[j];
-        }
-    }
-    for (int i = 0; i < maxLinhas; i++) ytrain[i] = pontos[i].classe;
-    for (int i = 0; i < maxLinhasTestes; i++){
-        for (int j = 0; j < 8; j++){
-            xtest[i * 8 + j] = testes[i].x[j];
-        }
-    }
+    //PrintArray(pontos, maxLinhas);
+    //PrintArray(testes, maxLinhasTestes);
 
     //int tmp = ordena(3, xtrain, ytrain, xtest);
 

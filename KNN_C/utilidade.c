@@ -5,7 +5,7 @@
 
 void PrintArray(Ponto lista[], int max){
     for (int i = 0; i < max; i++) {
-        printf("Ponto(%d): ", i + 1);
+        printf("Ponto(%d | %d): ", i + 1, lista[i].id);
         printf("x: [");
         for (int j = 0; j < 8; j++) {
             printf("%.3f", lista[i].x[j]);

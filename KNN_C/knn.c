@@ -11,6 +11,7 @@ DistanciaPonto Distancia(Ponto ponto1, Ponto ponto2){
 
     tmp.distancia = sqrt(distancia);
     tmp.classe = ponto2.classe;
+    tmp.id = ponto2.id;
 
     return tmp;
 }
@@ -27,14 +28,15 @@ float verificaClasse(DistanciaPonto distanciasPontos[],int k){
         }
     }
     if(k%2 != 0 ) return classeUm > classeZero ? 1 : 0;
-    else return distClasseZero > distClasseUm ? 1 : 0;
+    else if (distClasseZero != distClasseUm) return distClasseZero > distClasseUm ? 1 : 0;
+    else return distanciasPontos[0].classe;
 }
 
 void KNN(Ponto pontos[], Ponto testes[], int k, int tamanhoPontos, int tamanhoTestes){
     DistanciaPonto distanciasPontos[tamanhoTestes][tamanhoPontos];
     
     for (int i = 0; i < tamanhoTestes; i++){
-        for (int j = 0; j < tamanhoPontos; j++) distanciasPontos[i][j].distancia = distanciasPontos[i][j].classe = -1; //Definindo o array de distancias.
+        for (int j = 0; j < tamanhoPontos; j++) distanciasPontos[i][j].distancia = distanciasPontos[i][j].classe = distanciasPontos[i][j].id = -1; //Definindo o array de distancias.
     }
 
     //Calculando todas as distâncias com relação à um ponto de teste.
@@ -55,7 +57,7 @@ void KNN(Ponto pontos[], Ponto testes[], int k, int tamanhoPontos, int tamanhoTe
     //Imprimindo
     for (int i = 0; i < tamanhoPontos; i++) {
         if (distanciasPontos[0][i].distancia == -1) break;
-        printf("Distancia(%d): ", i + 1);
+        printf("Distancia(%d | %d): ", i + 1, distanciasPontos[0][i].id);
         printf("%.4f, ", distanciasPontos[0][i].distancia);
         printf("%.0f\n", distanciasPontos[0][i].classe);
     }
