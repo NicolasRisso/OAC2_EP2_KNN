@@ -5,7 +5,7 @@
 DistanciaPonto Distancia(Ponto ponto1, Ponto ponto2){
     DistanciaPonto tmp;
     float distancia = 0;
-    for (int i = 0; i < 8; i++){
+    for (int i = 0; i < Lenght(ponto2.x); i++){
         distancia += (ponto1.x[i] - ponto2.x[i])*(ponto1.x[i] - ponto2.x[i]);
     }
 
@@ -27,9 +27,9 @@ float verificaClasse(DistanciaPonto distanciasPontos[],int k){
             distClasseZero += distanciasPontos[i].distancia;
         }
     }
+    printf("Pedres: %d - %d\n", classeZero, classeUm);
     if(k%2 != 0 ) return classeUm > classeZero ? 1 : 0;
-    else if (distClasseZero != distClasseUm) return distClasseZero > distClasseUm ? 1 : 0;
-    else return distanciasPontos[0].classe;
+    else return distClasseZero > distClasseUm ? 1 : 0;
 }
 
 void KNN(Ponto pontos[], Ponto testes[], int k, int tamanhoPontos, int tamanhoTestes){
@@ -56,10 +56,10 @@ void KNN(Ponto pontos[], Ponto testes[], int k, int tamanhoPontos, int tamanhoTe
 
     //Imprimindo
     for (int i = 0; i < tamanhoPontos; i++) {
-        if (distanciasPontos[0][i].distancia == -1) break;
-        printf("Distancia(%d | %d): ", i + 1, distanciasPontos[0][i].id);
-        printf("%.4f, ", distanciasPontos[0][i].distancia);
-        printf("%.0f\n", distanciasPontos[0][i].classe);
+        if (distanciasPontos[69][i].distancia == -1) break;
+        printf("Distancia(%d | %d): ", i + 1, distanciasPontos[69][i].id);
+        printf("%.4f, ", distanciasPontos[69][i].distancia);
+        printf("%.0f\n", distanciasPontos[69][i].classe);
     }
 }
 

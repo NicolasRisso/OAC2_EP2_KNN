@@ -5,6 +5,7 @@
 
 void EscreverX(Ponto matrizPonto[], FILE *file, int maxLinhas, int numColunas) {
     for (int numLinhas = 0; numLinhas < maxLinhas; numLinhas++) {
+        alocarEspaco(&matrizPonto[numLinhas], numColunas); //Aloca espaço pro array (emoji com óculos de sol)
         for (int i = 0; i < numColunas; i++) {
             fscanf(file, "%f", &matrizPonto[numLinhas].x[i]);
             // Se for a última coluna, pula a vírgula
@@ -30,6 +31,7 @@ void EscreverY(Ponto matrizPonto[], FILE *file, int maxLinhas){
 void LeituraTrain(Ponto matrizPonto[], char xtrainFileName[], char ytrainFileName[]){
 
     int maxLinhas = CountFileLines(xtrainFileName);
+    int numCol = ContarCol(xtrainFileName);
 
     FILE *xtrainFile, *ytrainFile;
 
@@ -40,7 +42,7 @@ void LeituraTrain(Ponto matrizPonto[], char xtrainFileName[], char ytrainFileNam
     if (ytrainFile == NULL) perror("Erro ao abrir o arquivo do ytrain");
 
     //Leitura do xtrain
-    EscreverX(matrizPonto, xtrainFile, maxLinhas, ContarCol(xtrainFileName));
+    EscreverX(matrizPonto, xtrainFile, maxLinhas, numCol);
 
     //Leitura do ytrain
     EscreverY(matrizPonto, ytrainFile, maxLinhas);

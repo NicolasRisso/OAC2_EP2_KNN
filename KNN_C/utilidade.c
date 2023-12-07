@@ -59,6 +59,20 @@ int ContarCol(char nomeArquivo[]){
 
 }
 
+int Lenght(float array[]) {
+    int comprimento = 0;
+    // Itera sobre o array até encontrar o término (assumindo que o término seja zero)
+    while (array[comprimento] != -1) {
+        comprimento++;
+    }
+    return comprimento;
+}
+
+void alocarEspaco(Ponto *ponto, int numColunas) {
+    ponto->x = (float *)malloc((numColunas + 1) * sizeof(float));
+    ponto->x[numColunas] = -1.0f;
+}
+
 
 void trocar(DistanciaPonto *a, DistanciaPonto *b) {
     float temp = a->distancia;

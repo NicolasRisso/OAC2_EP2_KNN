@@ -2,7 +2,7 @@
 #define STRUCTS_H
 
 struct Ponto {
-    float x[8];  //x, y, z, w, u, v, s, t
+    float *x;  //x, y, z, w, u, v, s, t
     float classe;
     int id;
 };
