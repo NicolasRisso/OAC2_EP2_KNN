@@ -6,7 +6,8 @@ int main() {
 
     char xtrainFileName[] = "../data/xtrain.txt";
     char ytrainFileName[] = "../data/ytrain.txt";
-
+    int numCol = ContarCol("../data/xtrain.txt");
+    printf("%d", numCol);
     int maxLinhas = CountFileLines(xtrainFileName);
     struct Ponto pontos[maxLinhas];
 

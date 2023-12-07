@@ -36,6 +36,35 @@ int CountFileLines(char filePath[]){
     return contadorLinhas;
 }
 
+
+int ContarCol(char nomeArquivo[]){
+     FILE *arquivo;
+    arquivo = fopen(nomeArquivo, "r");
+    char linha[1000];
+    int contador = 0;
+
+    if (arquivo == NULL) {
+        perror("Erro ao abrir o arquivo");
+        return -1; // Retorna um valor negativo para indicar erro
+    }
+
+    if (fgets(linha, sizeof(linha), arquivo) != NULL) {
+        for (int i = 0; linha[i] != '\0'; i++) {
+            if (linha[i] == ',') {
+                contador++;
+            }
+        }
+        printf("A primeira linha do arquivo possui %d coluna(s).\n", contador + 1); // Adiciona +1 para contar a última coluna
+    } else {
+        printf("O arquivo está vazio.\n");
+    }
+
+    fclose(arquivo);
+    return contador + 1; // Retorna o número de colunas na primeira linha do arquivo
+
+}
+
+
 void trocar(DistanciaPonto *a, DistanciaPonto *b) {
     float temp = a->distancia;
     a->distancia = b->distancia;

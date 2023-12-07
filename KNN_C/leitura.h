@@ -5,5 +5,4 @@
 
 void LeituraTrain(Ponto matrizPonto[], char xtrainFileName[], char ytrainFileName[]);
 void LeituraTest(Ponto matrizPonto[], int maxLinhas);
-
 #endif

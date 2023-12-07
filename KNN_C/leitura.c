@@ -48,6 +48,8 @@ void LeituraTrain(Ponto matrizPonto[], char xtrainFileName[], char ytrainFileNam
     fclose(ytrainFile);
 }
 
+
+
 void LeituraTest(Ponto matrizPonto[], int maxLinhas){
     FILE *xtestFile;
     char xtestFileName[] = "../data/xtest.txt";
