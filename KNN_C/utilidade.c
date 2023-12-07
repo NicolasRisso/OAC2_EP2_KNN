@@ -38,7 +38,7 @@ int CountFileLines(char filePath[]){
 
 
 int ContarCol(char nomeArquivo[]){
-     FILE *arquivo;
+    FILE *arquivo;
     arquivo = fopen(nomeArquivo, "r");
     char linha[1000];
     int contador = 0;
@@ -49,12 +49,7 @@ int ContarCol(char nomeArquivo[]){
     }
 
     if (fgets(linha, sizeof(linha), arquivo) != NULL) {
-        for (int i = 0; linha[i] != '\0'; i++) {
-            if (linha[i] == ',') {
-                contador++;
-            }
-        }
-        printf("A primeira linha do arquivo possui %d coluna(s).\n", contador + 1); // Adiciona +1 para contar a última coluna
+        for (int i = 0; linha[i] != '\0'; i++) if (linha[i] == ',') contador++;
     } else {
         printf("O arquivo está vazio.\n");
     }

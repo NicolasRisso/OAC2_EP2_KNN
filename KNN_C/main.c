@@ -6,7 +6,10 @@ int main() {
 
     char xtrainFileName[] = "../data/xtrain.txt";
     char ytrainFileName[] = "../data/ytrain.txt";
+    char xtestFileName[] = "../data/xtest.txt";
+
     int numCol = ContarCol("../data/xtrain.txt");
+
     printf("%d", numCol);
     int maxLinhas = CountFileLines(xtrainFileName);
     struct Ponto pontos[maxLinhas];
@@ -15,12 +18,12 @@ int main() {
     struct Ponto testes[maxLinhasTestes];
 
     LeituraTrain(pontos, xtrainFileName, ytrainFileName);
-    LeituraTest(testes, maxLinhasTestes);
+    LeituraTest(testes, xtestFileName);
 
     // PrintArray(pontos, maxLinhas);
     // PrintArray(testes, maxLinhasTestes);
 
-    KNN(pontos, testes, 1, maxLinhas, maxLinhasTestes);
+    KNN(pontos, testes, 9, maxLinhas, maxLinhasTestes);
 
     //PrintArray(pontos, maxLinhas);
     //PrintArray(testes, maxLinhasTestes);
