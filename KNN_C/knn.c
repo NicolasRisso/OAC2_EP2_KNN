@@ -46,21 +46,22 @@ void KNN(Ponto pontos[], Ponto testes[], int k, int tamanhoPontos, int tamanhoTe
             distanciasPontos[i][j] = Distancia(testes[i], pontos[j]);
         }
         bubbleSort(distanciasPontos[i], tamanhoPontos);
-         //Implementar a observacao dos k pontos mais proximos
+        //Implementar a observacao dos k pontos mais proximos
+        printf("%f", distanciasPontos[i][0]);
         testes[i].classe = verificaClasse(distanciasPontos[i],k);
     }
 
-    for (int i = 0; i < tamanhoTestes; i++){
-        printf("teste:%d classe: %.1f\n", i+1, testes[i].classe);
-    }
+    // for (int i = 0; i < tamanhoTestes; i++){
+    //     printf("teste:%d classe: %.1f\n", i+1, testes[i].classe);
+    // }
 
-    //Imprimindo
-    for (int i = 0; i < tamanhoPontos; i++) {
-        if (distanciasPontos[69][i].distancia == -1) break;
-        printf("Distancia(%d | %d): ", i + 1, distanciasPontos[69][i].id);
-        printf("%.4f, ", distanciasPontos[69][i].distancia);
-        printf("%.0f\n", distanciasPontos[69][i].classe);
-    }
+    // //Imprimindo
+    // for (int i = 0; i < tamanhoPontos; i++) {
+    //     if (distanciasPontos[0][i].distancia == -1) break;
+    //     printf("Distancia(%d | %d): ", i + 1, distanciasPontos[0][i].id);
+    //     printf("%.4f, ", distanciasPontos[0][i].distancia);
+    //     printf("%.0f\n", distanciasPontos[0][i].classe);
+    // }
 }
 
 int ordena(int k, float *xtrain, float *ytrain, float *xtest){

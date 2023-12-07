@@ -23,10 +23,10 @@ int main() {
     // PrintArray(pontos, maxLinhas);
     // PrintArray(testes, maxLinhasTestes);
 
-    KNN(pontos, testes, 9, maxLinhas, maxLinhasTestes);
+    KNN(pontos, testes, 1, maxLinhas, maxLinhasTestes);
 
     //PrintArray(pontos, maxLinhas);
-    //PrintArray(testes, maxLinhasTestes);
+    PrintArray(testes, maxLinhasTestes);
 
     //int tmp = ordena(3, xtrain, ytrain, xtest);
 

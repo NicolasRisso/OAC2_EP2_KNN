@@ -23,7 +23,7 @@ void EscreverY(Ponto matrizPonto[], FILE *file, int maxLinhas){
         if (strlen(tmp) <= 1) //Evita a leitura repetida causada pelo \0.
             continue;
         sscanf(tmp, "%f", &matrizPonto[i].classe);
-        matrizPonto[i].id = i + 1;
+        matrizPonto[i].id = i;
         fgetc(file); //Para a leitura atual do fgets para que ele não leia o .0 do arquivo como um outro float.
     }
 }
