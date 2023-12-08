@@ -5,9 +5,8 @@
 
 void PrintArray(Ponto lista[], int max);
 int CountFileLines(char filePath[]);
-void bubbleSort(DistanciaPonto distancias[], int n);
 int ContarCol(char nomeArquivo[]);
 int Lenght(float array[]);
 void alocarEspaco(Ponto *ponto, int numColunas);
-
+int compararDistancias(const void *a, const void *b);
 #endif

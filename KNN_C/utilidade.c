@@ -80,12 +80,14 @@ void trocar(DistanciaPonto *a, DistanciaPonto *b) {
     b->distancia = temp;
 }
 
-void bubbleSort(DistanciaPonto distancias[], int n) {
-    for (int i = 0; i < n - 1; i++) {
-        for (int j = 0; j < n - i - 1; j++) {
-            if (distancias[j].distancia > distancias[j + 1].distancia) {
-                trocar(&distancias[j], &distancias[j + 1]);
-            }
-        }
-    }
+
+// Função de comparação para qsort
+int compararDistancias(const void *a, const void *b) {
+    struct DistanciaPonto *p1 = (struct DistanciaPonto *)a;
+    struct DistanciaPonto *p2 = (struct DistanciaPonto *)b;
+
+    if (p1->distancia < p2->distancia) return -1;
+    else if (p1->distancia > p2->distancia) return 1;
+    else return 0;
 }
+

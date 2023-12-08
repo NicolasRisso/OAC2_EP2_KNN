@@ -10,7 +10,6 @@ int main() {
 
     int numCol = ContarCol("../data/xtrain.txt");
 
-    printf("%d", numCol);
     int maxLinhas = CountFileLines(xtrainFileName);
     struct Ponto pontos[maxLinhas];
 
@@ -26,7 +25,7 @@ int main() {
     KNN(pontos, testes, 1, maxLinhas, maxLinhasTestes);
 
     //PrintArray(pontos, maxLinhas);
-    PrintArray(testes, maxLinhasTestes);
+   // PrintArray(testes, maxLinhasTestes);
 
     //int tmp = ordena(3, xtrain, ytrain, xtest);
 

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 #include "knn.h"
 
 DistanciaPonto Distancia(Ponto ponto1, Ponto ponto2){
@@ -17,9 +18,10 @@ DistanciaPonto Distancia(Ponto ponto1, Ponto ponto2){
 }
 
 float verificaClasse(DistanciaPonto distanciasPontos[],int k){
-    int classeZero = 0, classeUm = 0, distClasseZero = 0, distClasseUm = 0;
+    int classeZero = 0, classeUm = 0;
+    float distClasseZero = 0, distClasseUm = 0;
     for( int i = 0; i<k;i++){
-        if(distanciasPontos[i].classe == 1){
+        if((int)distanciasPontos[i].classe == 1){
             classeUm++;
             distClasseUm += distanciasPontos[i].distancia;
         }else{
@@ -27,7 +29,7 @@ float verificaClasse(DistanciaPonto distanciasPontos[],int k){
             distClasseZero += distanciasPontos[i].distancia;
         }
     }
-    printf("Pedres: %d - %d\n", classeZero, classeUm);
+   // printf("Pedres: %d - %d\n", classeZero, classeUm);
     if(k%2 != 0 ) return classeUm > classeZero ? 1 : 0;
     else return distClasseZero > distClasseUm ? 1 : 0;
 }
@@ -44,16 +46,19 @@ void KNN(Ponto pontos[], Ponto testes[], int k, int tamanhoPontos, int tamanhoTe
         for (int j = 0; j < tamanhoPontos; j++){
             if (&pontos[j] == NULL) break;
             distanciasPontos[i][j] = Distancia(testes[i], pontos[j]);
+        //    printf("iteração: %d,classe: %f ---  distancia: %f, linha: %d\n",j,distanciasPontos[i][j].classe, distanciasPontos[i][j].distancia, distanciasPontos[i][j].id);
         }
-        bubbleSort(distanciasPontos[i], tamanhoPontos);
+         // Ordenar as distâncias para o ponto de teste atual usando qsort
+        qsort(distanciasPontos[i], tamanhoPontos, sizeof(struct DistanciaPonto), compararDistancias);
+
+        
         //Implementar a observacao dos k pontos mais proximos
-        printf("%f", distanciasPontos[i][0]);
         testes[i].classe = verificaClasse(distanciasPontos[i],k);
     }
 
-    // for (int i = 0; i < tamanhoTestes; i++){
-    //     printf("teste:%d classe: %.1f\n", i+1, testes[i].classe);
-    // }
+    for (int i = 0; i < tamanhoTestes; i++){
+        printf("teste:%d classe: %.1f\n", i+1, testes[i].classe);
+    }
 
     // //Imprimindo
     // for (int i = 0; i < tamanhoPontos; i++) {
