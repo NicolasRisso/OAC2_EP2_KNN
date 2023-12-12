@@ -22,7 +22,8 @@ int main() {
     // PrintArray(pontos, maxLinhas);
     // PrintArray(testes, maxLinhasTestes);
 
-    KNN(pontos, testes, 1, maxLinhas, maxLinhasTestes);
+    double time = KNN(pontos, testes, 1, maxLinhas, maxLinhasTestes);
+    printf("Tempo de Execucao: %.4fs", time);
 
     //PrintArray(pontos, maxLinhas);
    // PrintArray(testes, maxLinhasTestes);

@@ -34,12 +34,14 @@ float verificaClasse(DistanciaPonto distanciasPontos[],int k){
     else return distClasseZero > distClasseUm ? 1 : 0;
 }
 
-void KNN(Ponto pontos[], Ponto testes[], int k, int tamanhoPontos, int tamanhoTestes){
+double KNN(Ponto pontos[], Ponto testes[], int k, int tamanhoPontos, int tamanhoTestes){
     DistanciaPonto distanciasPontos[tamanhoTestes][tamanhoPontos];
     
     for (int i = 0; i < tamanhoTestes; i++){
         for (int j = 0; j < tamanhoPontos; j++) distanciasPontos[i][j].distancia = distanciasPontos[i][j].classe = distanciasPontos[i][j].id = -1; //Definindo o array de distancias.
     }
+
+    clock_t start_time = clock();
 
     //Calculando todas as distâncias com relação à um ponto de teste.
     for (int i = 0; i < tamanhoTestes; i++){
@@ -49,9 +51,12 @@ void KNN(Ponto pontos[], Ponto testes[], int k, int tamanhoPontos, int tamanhoTe
         //    printf("iteração: %d,classe: %f ---  distancia: %f, linha: %d\n",j,distanciasPontos[i][j].classe, distanciasPontos[i][j].distancia, distanciasPontos[i][j].id);
         }
          // Ordenar as distâncias para o ponto de teste atual usando qsort
-        qsort(distanciasPontos[i], tamanhoPontos, sizeof(struct DistanciaPonto), compararDistancias);
+    }
 
-        
+    clock_t end_time = clock();
+
+    for (int i = 0; i < tamanhoTestes; i++){ 
+        qsort(distanciasPontos[i], tamanhoPontos, sizeof(struct DistanciaPonto), compararDistancias);
         //Implementar a observacao dos k pontos mais proximos
         testes[i].classe = verificaClasse(distanciasPontos[i],k);
     }
@@ -59,6 +64,8 @@ void KNN(Ponto pontos[], Ponto testes[], int k, int tamanhoPontos, int tamanhoTe
     for (int i = 0; i < tamanhoTestes; i++){
         printf("teste:%d classe: %.1f\n", i+1, testes[i].classe);
     }
+
+    return (double)(end_time - start_time) / CLOCKS_PER_SEC;
 
     // //Imprimindo
     // for (int i = 0; i < tamanhoPontos; i++) {
