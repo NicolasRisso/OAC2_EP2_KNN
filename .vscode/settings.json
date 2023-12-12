@@ -4,6 +4,8 @@
         "stdlib.h": "c",
         "stdio.h": "c",
         "cmath": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "omp.h": "c",
+        "utilidade.h": "c"
     }
 }

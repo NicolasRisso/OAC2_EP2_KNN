@@ -1,4 +1,5 @@
 #include <time.h>
+#include <omp.h>
 #include "utilidade.h"
 
 #ifndef KNN_H
