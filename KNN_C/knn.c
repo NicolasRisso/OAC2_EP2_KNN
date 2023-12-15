@@ -35,9 +35,17 @@ float verificaClasse(DistanciaPonto distanciasPontos[],int k){
 }
 
 double KNN(Ponto pontos[], Ponto testes[], int k, int tamanhoPontos, int tamanhoTestes){
-    DistanciaPonto distanciasPontos[tamanhoTestes][tamanhoPontos];
-    for (int i = 0; i < tamanhoTestes; i++){
-        for (int j = 0; j < tamanhoPontos; j++) distanciasPontos[i][j].distancia = distanciasPontos[i][j].classe = distanciasPontos[i][j].id = -1; //Definindo o array de distancias.
+    // Aloca dinamicamente memória para a matriz
+    DistanciaPonto **distanciasPontos = (DistanciaPonto **)malloc(tamanhoTestes * sizeof(DistanciaPonto *));
+    for (int i = 0; i < tamanhoTestes; i++) {
+        distanciasPontos[i] = (DistanciaPonto *)malloc(tamanhoPontos * sizeof(DistanciaPonto));
+    }
+
+    // Inicializa a matriz
+    for (int i = 0; i < tamanhoTestes; i++) {
+        for (int j = 0; j < tamanhoPontos; j++) {
+            distanciasPontos[i][j].distancia = distanciasPontos[i][j].classe = distanciasPontos[i][j].id = -1;
+        }
     }
 
     omp_set_num_threads(1);
