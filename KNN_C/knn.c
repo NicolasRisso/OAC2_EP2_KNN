@@ -34,7 +34,7 @@ float verificaClasse(DistanciaPonto distanciasPontos[],int k){
     else return distClasseZero > distClasseUm ? 1 : 0;
 }
 
-double KNN(Ponto pontos[], Ponto testes[], int k, int tamanhoPontos, int tamanhoTestes){
+double KNN(Ponto pontos[], Ponto testes[], int k, int tamanhoPontos, int tamanhoTestes, int nthreads){
     // Aloca dinamicamente memória para a matriz
     DistanciaPonto **distanciasPontos = (DistanciaPonto **)malloc(tamanhoTestes * sizeof(DistanciaPonto *));
     for (int i = 0; i < tamanhoTestes; i++) {
@@ -49,7 +49,7 @@ double KNN(Ponto pontos[], Ponto testes[], int k, int tamanhoPontos, int tamanho
     }
 
     //atualize aqui o num de threads
-    omp_set_num_threads(1);
+    omp_set_num_threads(nthreads);
 
 
     clock_t start_time = clock();
@@ -106,17 +106,21 @@ double KNN(Ponto pontos[], Ponto testes[], int k, int tamanhoPontos, int tamanho
     //      // Ordenar as distâncias para o ponto de teste atual usando qsort
     // }
 
+
     clock_t end_time = clock();
 
-    for (int i = 0; i < tamanhoTestes; i++){ 
-        qsort(distanciasPontos[i], tamanhoPontos, sizeof(struct DistanciaPonto), compararDistancias);
-        //Implementar a observacao dos k pontos mais proximos
-        testes[i].classe = verificaClasse(distanciasPontos[i],k);
-    }
+    //ATENCAO TIREI A PARTE DE ORDENAR PARA FACILITAR NA HORA DE MEDIR O TEMPO DO KNN!!!
+    //COLOCAR DEVOLTA DPS
+    //--------------------------------------------------------------------------------------------------
+    // for (int i = 0; i < tamanhoTestes; i++){ 
+    //     qsort(distanciasPontos[i], tamanhoPontos, sizeof(struct DistanciaPonto), compararDistancias);
+    //     //Implementar a observacao dos k pontos mais proximos
+    //     testes[i].classe = verificaClasse(distanciasPontos[i],k);
+    // }
 
-    for (int i = 0; i < tamanhoTestes; i++){
-        printf("teste:%d classe: %.1f\n", i+1, testes[i].classe);
-    }
+    //for (int i = 0; i < tamanhoTestes; i++){
+    //    printf("teste:%d classe: %.1f\n", i+1, testes[i].classe);
+    //}
 
     return (double)(end_time - start_time) / CLOCKS_PER_SEC;
 
