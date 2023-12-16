@@ -4,8 +4,8 @@
 
 int main() {
 
-    char xtrainFileName[] = "../data/xtrain500000.txt";
-    char ytrainFileName[] = "../data/ytrain500000.txt";
+    char xtrainFileName[] = "../data/xtrain200000.txt";
+    char ytrainFileName[] = "../data/ytrain200000.txt";
     char xtestFileName[] = "../data/xtest.txt";
 
     int numCol = ContarCol(xtrainFileName);

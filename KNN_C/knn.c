@@ -48,35 +48,40 @@ double KNN(Ponto pontos[], Ponto testes[], int k, int tamanhoPontos, int tamanho
         }
     }
 
+    //atualize aqui o num de threads
     omp_set_num_threads(1);
 
-    //DistanciaPonto privateDistanciasPontos[omp_get_max_threads()][tamanhoTestes][tamanhoPontos];
-    // for (int q = 0; q < omp_get_num_threads(); q++) {
-    //     for (int i = 0; i < tamanhoTestes; i++){
-    //         for (int j = 0; j < tamanhoPontos; j++) privateDistanciasPontos[q][i][j].distancia = privateDistanciasPontos[q][i][j].classe = privateDistanciasPontos[q][i][j].id = -1; //Definindo o array de distancias.
-    //     }
-    // }
-    
 
     clock_t start_time = clock();
 
     #pragma omp parallel for schedule(dynamic)
     for (int i = 0; i < tamanhoTestes; i++) {
-        // Calculate start and end indices for each thread
-        int thread_id = omp_get_thread_num();
-        int chunk_size = (tamanhoPontos + omp_get_num_threads() - 1) / omp_get_num_threads();
-        int start = omp_get_thread_num() * chunk_size;
-        int end = (omp_get_thread_num() + 1) * chunk_size;
-        if (end > tamanhoPontos) {
-            end = tamanhoPontos;
-        }
-
-        // Calculate distances for the assigned range
-        for (int j = start; j < end; j++) {
-            if (&pontos[j] == NULL) break;
+        // Calculate distances for each test point
+        for (int j = 0; j < tamanhoPontos; j++) {
             distanciasPontos[i][j] = Distancia(testes[i], pontos[j]);
         }
     }
+
+
+
+
+    // #pragma omp parallel for schedule(dynamic)
+    // for (int i = 0; i < tamanhoTestes; i++) {
+    //     // Calculate start and end indices for each thread
+    //     int thread_id = omp_get_thread_num();
+    //     int chunk_size = (tamanhoPontos + omp_get_num_threads() - 1) / omp_get_num_threads();
+    //     int start = omp_get_thread_num() * chunk_size;
+    //     int end = (omp_get_thread_num() + 1) * chunk_size;
+    //     if (end > tamanhoPontos) {
+    //         end = tamanhoPontos;
+    //     }
+
+    //     // Calculate distances for the assigned range
+    //     for (int j = start; j < end; j++) {
+    //         if (&pontos[j] == NULL) break;
+    //         distanciasPontos[i][j] = Distancia(testes[i], pontos[j]);
+    //     }
+    // }
 
     // // Combine results after the parallel section
     // for (int i = 0; i < tamanhoTestes; i++) {
