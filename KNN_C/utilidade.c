@@ -68,6 +68,17 @@ int Lenght(float array[]) {
     return comprimento;
 }
 
+
+int LenghtPonto(Ponto array[]) {
+    int comprimento = 0;
+    // Itera sobre o array até encontrar o término (assumindo que o término seja zero)
+    while (array[comprimento].classe == 1 || array[comprimento].classe == 0) {
+        comprimento++;
+    }
+    return comprimento;
+}
+
+
 void alocarEspaco(Ponto *ponto, int numColunas) {
     ponto->x = (float *)malloc((numColunas + 1) * sizeof(float));
     ponto->x[numColunas] = -1.0f;
@@ -89,5 +100,35 @@ int compararDistancias(const void *a, const void *b) {
     if (p1->distancia < p2->distancia) return -1;
     else if (p1->distancia > p2->distancia) return 1;
     else return 0;
+}
+
+
+void SaveYTest(Ponto testes[]){
+    int tamanhoDoArray = LenghtPonto(testes);
+
+    // Nome do arquivo
+    const char *nomeArquivo = "../output/ytest.txt";
+
+    // Abrir o arquivo para escrita
+    FILE *arquivo = fopen(nomeArquivo, "w");
+
+    // Verificar se o arquivo foi aberto com sucesso
+    if (arquivo == NULL) {
+        fprintf(stderr, "Erro ao abrir o arquivo %s.\n", nomeArquivo);
+        return;
+    }
+
+    // Escrever cada elemento do array em uma nova linha
+    for (int i = 0; i < tamanhoDoArray; i++) {
+        if (i == tamanhoDoArray - 1) fprintf(arquivo, "%.0f", testes[i].classe);
+        else fprintf(arquivo, "%.0f\n", testes[i].classe);
+    }
+
+    // Fechar o arquivo
+    fclose(arquivo);
+
+    printf("Array salvo em %s.\n", nomeArquivo);
+
+    return;
 }
 
