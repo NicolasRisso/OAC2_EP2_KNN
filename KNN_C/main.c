@@ -4,8 +4,8 @@
 
 int main() {
 
-    char xtrainFileName[] = "../data/xtrain.txt";
-    char ytrainFileName[] = "../data/ytrain.txt";
+    char xtrainFileName[] = "../data/xtrain500000.txt";
+    char ytrainFileName[] = "../data/ytrain500000.txt";
     char xtestFileName[] = "../data/xtest.txt";
 
     int numCol = ContarCol(xtrainFileName);
@@ -38,14 +38,24 @@ int main() {
 
     int k = 1;
     int numThreads = 1;
+    int maxThreads = 1;
+    int passo = 1;
 
     printf("Digite o numero do k: ");
     scanf("%d", &k);
     printf("Digite o numero de Threads: ");
     scanf("%d", &numThreads);
 
-    double time = KNN(pontos, testes, k, maxLinhas, maxLinhasTestes, numThreads);
-    printf("Tempo de Execucao(1): %.3fs\n", time);
+    if (numThreads <= 0) {
+        printf("Executando multiplos KNNs.\nDigite o maximo de threads que deseja utilizar: ");
+        scanf("%d", &maxThreads);
+        printf("Digite o passo das threads: ");
+        scanf("%d", &passo);
+        Chama_KNN(pontos, testes, k, maxLinhas, maxLinhasTestes, numThreads, maxThreads, passo);
+    }else{
+        double time = KNN(pontos, testes, k, maxLinhas, maxLinhasTestes, numThreads);
+        printf("Tempo de Execucao(1): %.3fs\n", time);
+    }
 
     //PrintArray(pontos, maxLinhas);
     //PrintArray(testes, maxLinhasTestes);

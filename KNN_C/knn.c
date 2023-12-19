@@ -100,3 +100,40 @@ int ordena(int k, float *xtrain, float *ytrain, float *xtest){
     return -1;
 }
 
+double Mini_KNN(Ponto pontos[], Ponto testes[], int k, int tamanhoPontos, int tamanhoTestes, int nthreads, DistanciaPonto **distanciasPontos){
+    //atualize aqui o num de threads
+    omp_set_num_threads(nthreads);
+
+    clock_t start_time = clock();
+
+    #pragma omp parallel for schedule(dynamic)
+    for (int i = 0; i < tamanhoTestes; i++) {
+        // Calculate distances for each test point
+        for (int j = 0; j < tamanhoPontos; j++) {
+            distanciasPontos[i][j] = Distancia(testes[i], pontos[j]);
+        }
+    }
+
+    clock_t end_time = clock();
+
+    return (double)(end_time - start_time) / CLOCKS_PER_SEC;
+}
+
+void Chama_KNN(Ponto pontos[], Ponto testes[], int k, int tamanhoPontos, int tamanhoTestes, int nthreads, int max_threads, int passo){
+    // Aloca dinamicamente memória para a matriz
+    DistanciaPonto **distanciasPontos = (DistanciaPonto **)malloc(tamanhoTestes * sizeof(DistanciaPonto *));
+    for (int i = 0; i < tamanhoTestes; i++) {
+        distanciasPontos[i] = (DistanciaPonto *)malloc(tamanhoPontos * sizeof(DistanciaPonto));
+    }
+    // Inicializa a matriz
+    for (int i = 0; i < tamanhoTestes; i++) {
+        for (int j = 0; j < tamanhoPontos; j++) {
+            distanciasPontos[i][j].distancia = distanciasPontos[i][j].classe = distanciasPontos[i][j].id = -1;
+        }
+    }
+    double time = 0;
+    for (int i = 1; i <= max_threads; i += passo){
+        time = Mini_KNN(pontos, testes, k, tamanhoPontos, tamanhoTestes, i, distanciasPontos);
+        printf("Tempo de Execucao(%d): %.3f\n", i, time);
+    }
+}
