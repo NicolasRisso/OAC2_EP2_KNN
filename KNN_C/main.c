@@ -4,9 +4,20 @@
 
 int main() {
 
-    char xtrainFileName[] = "../data/xtrain500000.txt";
-    char ytrainFileName[] = "../data/ytrain500000.txt";
+    int tamanho = 0;
+    char xtrainFileName[50];
+    char ytrainFileName[50];
     char xtestFileName[] = "../data/xtest.txt";
+
+    printf("Qual o tamanho do arquivo que deseja utilizar como entrada(100, 500, 1000...)? ");
+    scanf("%d", &tamanho);
+    if (tamanho == 100 || tamanho == 500 || tamanho == 1000 || tamanho == 10000 || tamanho == 100000 || tamanho == 200000 || tamanho == 500000){
+        sprintf(xtrainFileName, "../data/xtrain%d.txt", tamanho);
+        sprintf(ytrainFileName, "../data/ytrain%d.txt", tamanho);
+    }else{
+        sprintf(xtrainFileName, "../data/xtrain.txt", tamanho);
+        sprintf(ytrainFileName, "../data/ytrain.txt", tamanho);
+    }
 
     int numCol = ContarCol(xtrainFileName);
 
@@ -54,7 +65,7 @@ int main() {
         Chama_KNN(pontos, testes, k, maxLinhas, maxLinhasTestes, numThreads, maxThreads, passo);
     }else{
         double time = KNN(pontos, testes, k, maxLinhas, maxLinhasTestes, numThreads);
-        printf("Tempo de Execucao(1): %.3fs\n", time);
+        printf("Tempo de Execucao: %.3fs\n", time);
     }
 
     //PrintArray(pontos, maxLinhas);

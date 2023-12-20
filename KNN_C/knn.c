@@ -136,4 +136,4 @@ void Chama_KNN(Ponto pontos[], Ponto testes[], int k, int tamanhoPontos, int tam
         time = Mini_KNN(pontos, testes, k, tamanhoPontos, tamanhoTestes, i, distanciasPontos);
         printf("Tempo (%d): %.3f\n", i, time);
     }
-}//Tempo de Execucao(%d): 
+}
