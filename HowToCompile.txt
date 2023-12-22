@@ -13,5 +13,5 @@ COM MAKEFILE:
 1. Vá para a pasta KNN_C:
 cd .\KNN_C\
 
-2.Utilize o comando "all" do makefile (ele compila e roda):
-make all
+2.Utilize o comando "all_multi" (multi para utilizar o multi threading) do makefile (ele compila e roda):
+make all_multi
