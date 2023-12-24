@@ -104,7 +104,7 @@ int compararDistancias(const void *a, const void *b) {
 
 
 void SaveYTest(Ponto testes[]){
-    int tamanhoDoArray = LenghtPonto(testes);
+    int tamanhoDoArray = 192;
 
     const char *nomeArquivo = "../output/ytest.txt";
     FILE *arquivo = fopen(nomeArquivo, "w");
