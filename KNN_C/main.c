@@ -11,7 +11,7 @@ int main() {
 
     printf("Qual o tamanho do arquivo que deseja utilizar como entrada(100, 500, 1000...)? ");
     scanf("%d", &tamanho);
-    if (tamanho == 100 || tamanho == 500 || tamanho == 1000 || tamanho == 10000 || tamanho == 100000 || tamanho == 200000 || tamanho == 500000){
+    if (tamanho == 100 || tamanho == 500 || tamanho == 1000 || tamanho == 10000 || tamanho == 100000 || tamanho == 200000 || tamanho == 500000 || tamanho == 1000000){
         sprintf(xtrainFileName, "../data/xtrain%d.txt", tamanho);
         sprintf(ytrainFileName, "../data/ytrain%d.txt", tamanho);
     }else{
@@ -62,6 +62,7 @@ int main() {
         scanf("%d", &maxThreads);
         printf("Digite o passo das threads: ");
         scanf("%d", &passo);
+        numThreads = 2;
         Chama_KNN(pontos, testes, k, maxLinhas, maxLinhasTestes, numThreads, maxThreads, passo);
     }else{
         double time = KNN(pontos, testes, k, maxLinhas, maxLinhasTestes, numThreads);

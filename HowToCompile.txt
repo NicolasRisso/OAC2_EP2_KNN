@@ -1,3 +1,7 @@
+IMPORTANTE: Para compilar entradas muito grandes, como é o caso da entrada de 1.000.000,
+é necessário aumentar a quantidade de memória RAM fornecida do computador para o programa feito em C.
+
+
 SEM MAKEFILE:
 
 1. Vá para a pasta KNN_C:

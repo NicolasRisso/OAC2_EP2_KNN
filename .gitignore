@@ -50,3 +50,7 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+#Arquivos grandes demais da entrada do EP
+data/xtrain1000000.txt
+data/ytrain1000000.txt
